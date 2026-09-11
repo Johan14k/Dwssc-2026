@@ -1,3 +1,5 @@
+![Pleca Itgam](.assets/pleca_itgam.jpg)
+
 # Dwssr-2026-b
 *Proyecto de la materia de Desarrollo Web SSC.*
 
