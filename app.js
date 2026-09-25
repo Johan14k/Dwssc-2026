@@ -1,25 +1,43 @@
-// Función para manejar errores en la aplicación (como el clásico error 404)
-var createError = require('http-errors');
+// Funcion para manejar errores en la aplicacion
+// ❌ var createError = require('http-errors');
+import createError from 'http-errors'
 
-// Importar el framework express (la base de nuestra aplicación)
-var express = require('express');
+// Importar el framework express
+// ❌ var express = require('express');
+import express from 'express'
 
-// Importa módulo para manejar y unir rutas de archivos y carpetas fácilmente
-var path = require('path');
+// Importa modulos para manejar rutas
+// ❌ var path = require('path');
+import path from 'node:path'
 
-// Importa módulo para manejar y leer las cookies del navegador
-var cookieParser = require('cookie-parser');
+// Importa modulos para manejar cookies
+// ❌ var cookieParser = require('cookie-parser');
+import cookieParser from 'cookie-parser'
 
-// Importa módulo para manejar logs (registra las peticiones que llegan al servidor en la consola)
-var logger = require('morgan');
+// Importa modulos para manejar logs
+// ❌ var logger = require('morgan');
+import logger from 'morgan'
+//importando bibloteca de debug
+import creatdebug from "debug"
+// import para crear Dirname
+import { fileURLToPath } from 'node:url'
+import { dirname } from 'node:path'
 
-// Importa el enrutador que controlará la página principal (la ruta base '/')
-var indexRouter = require('./routes/index');
+// Creacion del objeto debug
+const debug = creatdebug('dwssc-2026:server')
 
-// Importa el enrutador que controlará todo lo relacionado con usuarios (la ruta '/users')
-var usersRouter = require('./routes/users');
 
-// Inicializa nuestra aplicación de Express
+//Creando la variable
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+// Importar las rutas de la aplicación
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
+
+
+// Crear la aplicación express
+debug("🔨 Creando Backend")
 var app = express();
 
 // --- Configuración del motor de vistas (lo que el usuario verá) ---
@@ -45,11 +63,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Definimos la carpeta 'public' para archivos estáticos (aquí van tus imágenes, CSS, scripts del cliente)
+debug("🔨 Creando servidor de archivos estaticos")
 app.use(express.static(path.join(__dirname, 'public')));
 
 // --- Definición de las Rutas ---
 
 // Cuando alguien visite la ruta raíz ('/'), usa el enrutador principal
+debug("🌌 Registrando rutas ")
 app.use('/', indexRouter);
 
 // Cuando alguien visite '/users', usa el enrutador de usuarios
@@ -78,4 +98,5 @@ app.use(function(err, req, res, next) {
 });
 
 // Exporta toda la configuración de la aplicación para que el servidor pueda arrancarla
-module.exports = app;
+//module.exports = app;
+export default app;
