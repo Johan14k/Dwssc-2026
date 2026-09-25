@@ -17,9 +17,15 @@ import cookieParser from 'cookie-parser'
 // Importa modulos para manejar logs
 // ❌ var logger = require('morgan');
 import logger from 'morgan'
+//importando bibloteca de debug
+import creatdebug from "debug"
 // import para crear Dirname
 import { fileURLToPath } from 'node:url'
 import { dirname } from 'node:path'
+
+// Creacion del objeto debug
+const debug = creatdebug('dwssc-2026:server')
+
 
 //Creando la variable
 const __filename = fileURLToPath(import.meta.url)
@@ -29,7 +35,9 @@ const __dirname = dirname(__filename)
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 
+
 // Crear la aplicación express
+debug("🔨 Creando Backend")
 var app = express();
 
 // --- Configuración del motor de vistas (lo que el usuario verá) ---
@@ -55,11 +63,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Definimos la carpeta 'public' para archivos estáticos (aquí van tus imágenes, CSS, scripts del cliente)
+debug("🔨 Creando servidor de archivos estaticos")
 app.use(express.static(path.join(__dirname, 'public')));
 
 // --- Definición de las Rutas ---
 
 // Cuando alguien visite la ruta raíz ('/'), usa el enrutador principal
+debug("🌌 Registrando rutas ")
 app.use('/', indexRouter);
 
 // Cuando alguien visite '/users', usa el enrutador de usuarios
