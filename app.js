@@ -17,6 +17,13 @@ import cookieParser from 'cookie-parser'
 // Importa modulos para manejar logs
 // ❌ var logger = require('morgan');
 import logger from 'morgan'
+// import para crear Dirname
+import { fileURLToPath } from 'node:url'
+import { dirname } from 'node:path'
+
+//Creando la variable
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 // Importar las rutas de la aplicación
 import indexRouter from './routes/index.js';
@@ -81,4 +88,5 @@ app.use(function(err, req, res, next) {
 });
 
 // Exporta toda la configuración de la aplicación para que el servidor pueda arrancarla
-module.exports = app;
+//module.exports = app;
+export default app;
