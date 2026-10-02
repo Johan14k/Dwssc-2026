@@ -43,7 +43,7 @@ var app = express();
 // --- Configuración del motor de vistas (lo que el usuario verá) ---
 
 // Le indicamos a Express en qué carpeta se encuentran nuestros archivos de vistas (plantillas)
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views')); // <-- RUTA CORREGIDA AQUÍ
 
 // Establecemos 'hbs' (Handlebars) como nuestro motor para renderizar el HTML
 app.set('view engine', 'hbs');
@@ -64,7 +64,7 @@ app.use(cookieParser());
 
 // Definimos la carpeta 'public' para archivos estáticos (aquí van tus imágenes, CSS, scripts del cliente)
 debug("🔨 Creando servidor de archivos estaticos")
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public'))); // <-- RUTA CORREGIDA AQUÍ
 
 // --- Definición de las Rutas ---
 
