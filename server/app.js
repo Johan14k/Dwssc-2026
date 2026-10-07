@@ -22,6 +22,8 @@ import creatdebug from "debug"
 // import para crear Dirname
 import { fileURLToPath } from 'node:url'
 import { dirname } from 'node:path'
+//Importando el template engine Handlebars
+import hbs from 'hbs'
 
 // Creacion del objeto debug
 const debug = creatdebug('dwssc-2026:server')
@@ -34,6 +36,10 @@ const __dirname = dirname(__filename)
 // Importar las rutas de la aplicación
 import indexRouter from '#routes/index.js';
 import usersRouter from '#routes/users.js';
+
+//importando el registrador del helper
+import { registerViteHelper } from './LIB/vite.js'
+registerViteHelper(hbs);
 
 
 // Crear la aplicación express
@@ -62,9 +68,14 @@ app.use(express.urlencoded({ extended: false }));
 // Habilitamos el uso de cookies en nuestra aplicación
 app.use(cookieParser());
 
+//Archivos estaticos para produccion 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'dist')));
+}
+
 // Definimos la carpeta 'public' para archivos estáticos (aquí van tus imágenes, CSS, scripts del cliente)
 debug("🔨 Creando servidor de archivos estaticos")
-app.use(express.static(path.join(__dirname, '../public'))); // <-- RUTA CORREGIDA AQUÍ
+app.use(express.static(path.join(__dirname, '..','public'))); // <-- RUTA CORREGIDA AQUÍ
 
 // --- Definición de las Rutas ---
 
