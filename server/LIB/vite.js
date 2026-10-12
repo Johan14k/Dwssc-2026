@@ -64,7 +64,7 @@ export function viteAssets() {
     tags += `<script type="module" src="/${mainEntry.file}"defer></script>`;
 
     // Retornamos todas las etiquetas generadas
-    return ''
+    return tags;
 }
 
 /**
