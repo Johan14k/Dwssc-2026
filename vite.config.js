@@ -1,9 +1,12 @@
 import {defineConfig} from 'vite'
 import {resolve} from 'node:path'
+import tailwindcss from '@tailwindcss/vite' 
 
 export default defineConfig({
     //Directorio raiz de los archivos fuente del front end
     root: 'src',
+    // Agregando a Vite el plugin de tailwindcss
+    plugins: [tailwindcss()],
     //Configurando un servidor de desarrollo 
     server:{
         //Puerto de escucha
