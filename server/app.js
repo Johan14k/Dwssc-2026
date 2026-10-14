@@ -93,13 +93,15 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// Manejador central de errores (aquí caen todos los problemas)
+// Manejador de errores (aquí caen todos los problemas)
+// eslint-disable-next-line no-unused-vars
 app.use(function(err, req, res, next) {
   // Prepara el mensaje de error para mostrarlo en la vista
   res.locals.message = err.message;
   
   // Muestra los detalles del error solo si estamos desarrollando (por seguridad, en producción no se muestran detalles)
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get('env') === 
+  'development' ? err : {};
 
   // Define el código de estado HTTP (usa el del error, o 500 si fue un fallo interno del servidor)
   res.status(err.status || 500);
