@@ -21,9 +21,12 @@ export default defineConfig([
       globals: {
         ...globals.node
       } 
-    } 
+    }, 
+    rules: {
+      "no-unused-vars": [ "error", { "argsIgnorePattern": "^_" } ]
+    }
   },
-  // 2.1) Configuracion del back-end
+  // 2.1) Configuracion de Vite
   {   
     files: ["vite.config.js"], 
     plugins: { js }, 
@@ -36,7 +39,7 @@ export default defineConfig([
       } 
     } 
   },
-  // 3) Configuracion del fonr-end
+  // 3) Configuracion del front-end
   {   
     files: ["src/**/*.{js,mjs}"], 
     plugins: { js }, 
