@@ -8,5 +8,10 @@
   // Tamaño de la indentación (espacios)
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.detectIndentation": false
+  "editor.detectIndentation": false,
+
+  // Corrección automática de ESLint al guardar
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  }
 }
