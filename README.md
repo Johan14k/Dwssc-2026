@@ -28,3 +28,15 @@
 | ✅ | **test** | Creación, actualización o corrección de pruebas. |
 | 🔧 | **chore** | Tareas de mantenimiento, actualización de dependencias o configuración. |
 | ⏪️ | **revert** | Revierte el código a un estado de un commit anterior. |
+
+
+# 🧹 Instalación de la guía de estilo de Airbnb
+
+- 🔥`@eslint/eslintrc` Modulo interno de ESLINT que sirve para crear configuraciones
+- 🔥`eslint-config-airbnb-base` Contiene las definiciones básicas de la guía de estilos de airbnb para javascript.
+- 🔥`eslint-plugin-import` Sirve para poder importar configuraciones
+- ✅`eslint-config-prettier` Sirve para acoplar eslint con prettier
+- ✅`eslint` Biblioteca de linteo.
+- ✅ `@eslint/js` Permite a ESLINT reconocer código Javascript.
+- ✅`globals` Tiene variables globales dependientes de la plataforma, ya sea browser o maquina local.
+
