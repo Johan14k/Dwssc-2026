@@ -17,10 +17,12 @@ import logger from 'morgan';
 import hbs from 'hbs';
 import { registerViteHelper } from './LIB/vite.js';
 
-// Importa el enrutador que controlará la página principal 
+// Importa el enrutador que controlará la página principal
+// eslint-disable-next-line import-x/no-rename-default, import-x/no-useless-path-segments
 import indexRouter from './routes/index.js';
 
-// Importa el enrutador que controlará todo lo relacionado con usuarios 
+// Importa el enrutador que controlará todo lo relacionado con usuarios
+// eslint-disable-next-line import-x/no-rename-default
 import usersRouter from './routes/users.js';
 
 // Inicializa nuestra aplicación de Express
@@ -65,21 +67,21 @@ app.use('/users', usersRouter);
 // --- Manejo de Errores ---
 
 // Si el usuario busca una ruta que no existe, atrapamos el error 404
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // Manejador central de errores
-app.use(function(err, req, res, _next) {
+app.use((err, req, res, _next) => {
   // Prepara el mensaje de error para mostrarlo en la vista
   res.locals.message = err.message;
-  
+
   // Muestra los detalles del error solo si estamos desarrollando
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // Define el código de estado HTTP
   res.status(err.status || 500);
-  
+
   // Renderiza y muestra la plantilla 'error.hbs' al usuario
   res.render('error');
 });

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 /*
 Linea que informa a tailwind dond estan las vistas de nuestra app
 */
@@ -10,5 +10,9 @@ p {
 
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font:
+    14px 'Lucida Grande',
+    Helvetica,
+    Arial,
+    sans-serif;
 }

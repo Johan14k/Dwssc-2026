@@ -1,7 +1,8 @@
 ![Pleca ITGAM](assets/pleca_itgam.jpg)
 
 # Dwssr-2026-b
-*Proyecto de la materia de Desarrollo Web SSC.*
+
+_Proyecto de la materia de Desarrollo Web SSC._
 
 ---
 
@@ -17,18 +18,17 @@
 
 ## 🗃️ Tipos de Commits
 
-| Icono | Tipo | Descripción |
-| :---: | :--- | :--- |
-| ✨ | **feat** | Nueva característica o funcionalidad en el proyecto. |
-| 🐛 | **fix** | Corrección de un error o *bug*. |
-| 📝 | **docs** | Cambios exclusivos en la documentación (ej. actualizar el *README*). |
-| 🎨 | **style** | Cambios de formato que no afectan la ejecución (espacios, indentación). |
-| ♻️ | **refactor** | Reestructuración de código que no añade funciones ni arregla errores. |
-| ⚡️ | **perf** | Mejoras de rendimiento o de tiempos de carga. |
-| ✅ | **test** | Creación, actualización o corrección de pruebas. |
-| 🔧 | **chore** | Tareas de mantenimiento, actualización de dependencias o configuración. |
-| ⏪️ | **revert** | Revierte el código a un estado de un commit anterior. |
-
+| Icono | Tipo         | Descripción                                                             |
+| :---: | :----------- | :---------------------------------------------------------------------- |
+|  ✨   | **feat**     | Nueva característica o funcionalidad en el proyecto.                    |
+|  🐛   | **fix**      | Corrección de un error o _bug_.                                         |
+|  📝   | **docs**     | Cambios exclusivos en la documentación (ej. actualizar el _README_).    |
+|  🎨   | **style**    | Cambios de formato que no afectan la ejecución (espacios, indentación). |
+|  ♻️   | **refactor** | Reestructuración de código que no añade funciones ni arregla errores.   |
+|  ⚡️   | **perf**     | Mejoras de rendimiento o de tiempos de carga.                           |
+|  ✅   | **test**     | Creación, actualización o corrección de pruebas.                        |
+|  🔧   | **chore**    | Tareas de mantenimiento, actualización de dependencias o configuración. |
+|  ⏪️   | **revert**   | Revierte el código a un estado de un commit anterior.                   |
 
 # 🧹 Instalación de la guía de estilo de Airbnb
 
@@ -39,4 +39,3 @@
 - ✅`eslint` Biblioteca de linteo.
 - ✅ `@eslint/js` Permite a ESLINT reconocer código Javascript.
 - ✅`globals` Tiene variables globales dependientes de la plataforma, ya sea browser o maquina local.
-
