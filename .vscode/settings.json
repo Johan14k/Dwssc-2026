@@ -13,5 +13,6 @@
   // Corrección automática de ESLint al guardar
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
-  }
+  },
+  "editor.formatOnSave": true
 }
