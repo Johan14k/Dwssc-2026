@@ -2,5 +2,5 @@
 import './styles/main.css';
 
 // Impriendo en consola
-// eslint-disable-next-line no-console
-console.log('🎉 VITE ⚡ + EXPRESS 🚂 Working!!');
+ 
+console.warn('🎉 VITE ⚡ + EXPRESS 🚂 Working!!');
