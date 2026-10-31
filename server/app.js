@@ -11,7 +11,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 
 // Importa módulo para manejar logs (registra las peticiones que llegan al servidor en la consola)
-import logger from 'morgan';
+import morgan from 'morgan';
 
 // ¡AQUÍ ESTÁ LA PIEZA FALTANTE! Importamos hbs y tu helper de Vite
 import hbs from 'hbs';
@@ -24,6 +24,12 @@ import indexRouter from './routes/index.js';
 // Importa el enrutador que controlará todo lo relacionado con usuarios
 // eslint-disable-next-line import-x/no-rename-default
 import usersRouter from './routes/users.js';
+
+//Importamos LIB/winston.js
+import logger from './LIB/winston.js';
+
+
+
 
 // Inicializa nuestra aplicación de Express
 const app = express();
@@ -42,7 +48,8 @@ registerViteHelper(hbs);
 // --- Configuración de herramientas (middlewares) ---
 
 // Usamos el logger en modo 'dev' para ver en consola cada petición
-app.use(logger('dev'));
+app.use(morgan('dev', { stream: { write: (msg) => logger.info(msg.trim()) } }));
+
 
 // Le decimos a la aplicación que entienda y procese los datos en JSON
 app.use(express.json());
