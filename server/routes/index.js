@@ -12,6 +12,30 @@ router.get('/', (req, res, _next) => {
   });
 });
 
+// Rutas de prueba para exceptions y rejections
+// Solo habilitadas en modo desarrollo
+if (process.env.NODE_ENV !== 'production') {
+  // Ruta de prueba de excepciones
+  router.get('/test-exception', (req, res) => {
+    // Retrasar el fallo 100ms
+    setTimeout(() => {
+      throw new Error('Excepcion de prueba no capturada');
+    }, 100);
+    res.json({
+      message: 'Excepcion lanzada. Revisa logs/exceptions.log'
+    });
+  });
+
+  // Prueba de una rejection
+  router.get('/test-rejection', (req, res) => {
+    // Promesa rechazada sin catch
+    Promise.reject(new Error('Promesa rechazada de prueba sin catch'));
+    res.json({
+      message: 'Promesa rechazada, revisa archivo logs/rejections.log'
+    });
+  });
+}
+
 // Rutas para prueba de logs
 // Acceder a GET /test-logs
 router.get('/test-logs', (req, res) => {
