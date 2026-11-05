@@ -13,9 +13,12 @@ import cookieParser from 'cookie-parser';
 // Importa módulo para manejar logs (registra las peticiones que llegan al servidor en la consola)
 import morgan from 'morgan';
 
-// ¡AQUÍ ESTÁ LA PIEZA FALTANTE! Importamos hbs y tu helper de Vite
+// Importamos hbs y tu helper de Vite
 import hbs from 'hbs';
 import { registerViteHelper } from './LIB/vite.js';
+
+// Importando la funcion de configuracion de Hbs
+import configureHandlebars from './LIB/handlebars.js';
 
 // Importa el enrutador que controlará la página principal
 // eslint-disable-next-line import-x/no-rename-default, import-x/no-useless-path-segments
@@ -25,13 +28,11 @@ import indexRouter from './routes/index.js';
 // eslint-disable-next-line import-x/no-rename-default
 import usersRouter from './routes/users.js';
 
-//Importamos LIB/winston.js
+// Importamos LIB/winston.js
 import logger from './LIB/winston.js';
 
-
-
-
 // Inicializa nuestra aplicación de Express
+logger.info('🔨 Creando backend');
 const app = express();
 
 // --- Configuración del motor de vistas (lo que el usuario verá) ---
@@ -42,14 +43,20 @@ app.set('views', path.join(import.meta.dirname, 'views'));
 // Establecemos 'hbs' (Handlebars) como nuestro motor para renderizar el HTML
 app.set('view engine', 'hbs');
 
-// ¡AQUÍ ENCENDEMOS LA CONEXIÓN CON VITE!
+// ¡AQUÍ ENCENDEMOS LA CONEXIÓN CON VITE Y HANDLEBARS!
 registerViteHelper(hbs);
+configureHandlebars(app);
 
 // --- Configuración de herramientas (middlewares) ---
 
 // Usamos el logger en modo 'dev' para ver en consola cada petición
-app.use(morgan('dev', { stream: { write: (msg) => logger.info(msg.trim()) } }));
-
+app.use(
+  morgan('dev', {
+    stream: {
+      write: (msg) => logger.info(msg.trim()),
+    },
+  })
+);
 
 // Le decimos a la aplicación que entienda y procese los datos en JSON
 app.use(express.json());
@@ -61,11 +68,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Definimos la carpeta 'public' para archivos estáticos
+logger.info('🔨 Creando servidor de Archivos Estáticos');
 app.use(express.static(path.join(import.meta.dirname, 'public')));
 
 // --- Definición de las Rutas ---
 
 // Cuando alguien visite la ruta raíz ('/'), usa el enrutador principal
+logger.info('🛣️ Registrando rutas');
 app.use('/', indexRouter);
 
 // Cuando alguien visite '/users', usa el enrutador de usuarios
