@@ -93,7 +93,10 @@ app.use((err, req, res, _next) => {
   res.locals.message = err.message;
 
   // Muestra los detalles del error solo si estamos desarrollando
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? {
+    status: err.status || 500,
+    stack: err.stack
+  } : {};
 
   // Define el código de estado HTTP
   res.status(err.status || 500);
