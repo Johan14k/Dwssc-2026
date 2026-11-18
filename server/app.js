@@ -5,7 +5,7 @@ import createError from 'http-errors';
 import express from 'express';
 
 // Importa módulo para manejar y unir rutas de archivos y carpetas fácilmente
-import path from 'path';
+import path from 'node:path';
 
 // Importa módulo para manejar y leer las cookies del navegador
 import cookieParser from 'cookie-parser';
@@ -20,9 +20,9 @@ import { registerViteHelper } from './LIB/vite.js';
 // Importando la funcion de configuracion de Hbs
 import configureHandlebars from './LIB/handlebars.js';
 
-// Importa el enrutador que controlará la página principal
-// eslint-disable-next-line import-x/no-rename-default, import-x/no-useless-path-segments
-import indexRouter from './routes/index.js';
+// Importa el enrutador del módulo Home
+// eslint-disable-next-line import-x/no-useless-path-segments
+import homeRouter from './routes/index.js';
 
 // Importa el enrutador que controlará todo lo relacionado con usuarios
 // eslint-disable-next-line import-x/no-rename-default
@@ -67,15 +67,20 @@ app.use(express.urlencoded({ extended: false }));
 // Habilitamos el uso de cookies en nuestra aplicación
 app.use(cookieParser());
 
+// Archivos estáticos para producción (build de Vite)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(import.meta.dirname, '..', 'dist')));
+}
+
 // Definimos la carpeta 'public' para archivos estáticos
 logger.info('🔨 Creando servidor de Archivos Estáticos');
 app.use(express.static(path.join(import.meta.dirname, 'public')));
 
 // --- Definición de las Rutas ---
 
-// Cuando alguien visite la ruta raíz ('/'), usa el enrutador principal
+// Cuando alguien visite la ruta raíz ('/'), usa el enrutador del módulo Home
 logger.info('🛣️ Registrando rutas');
-app.use('/', indexRouter);
+app.use('/', homeRouter);
 
 // Cuando alguien visite '/users', usa el enrutador de usuarios
 app.use('/users', usersRouter);
