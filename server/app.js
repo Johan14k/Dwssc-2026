@@ -20,12 +20,12 @@ import { registerViteHelper } from './LIB/vite.js';
 // Importando la funcion de configuracion de Hbs
 import configureHandlebars from './LIB/handlebars.js';
 
-// Importa el enrutador del módulo Home
+// Importa los enrutadores nombrados desde routes/index.js
 // eslint-disable-next-line import-x/no-useless-path-segments
-import homeRouter from './routes/index.js';
+import { homeRouter, diagRouter } from './routes/index.js';
 
 // Importa el enrutador que controlará todo lo relacionado con usuarios
-// eslint-disable-next-line import-x/no-rename-default
+ 
 import usersRouter from './routes/users.js';
 
 // Importamos LIB/winston.js
@@ -78,9 +78,14 @@ app.use(express.static(path.join(import.meta.dirname, 'public')));
 
 // --- Definición de las Rutas ---
 
-// Cuando alguien visite la ruta raíz ('/'), usa el enrutador del módulo Home
+// Registramos las rutas de la aplicación
 logger.info('🛣️ Registrando rutas');
 app.use('/', homeRouter);
+
+// Se enruta solo si estamos en modo dev
+if (process.env.NODE_ENV !== 'production') {
+  app.use('/', diagRouter);
+}
 
 // Cuando alguien visite '/users', usa el enrutador de usuarios
 app.use('/users', usersRouter);
